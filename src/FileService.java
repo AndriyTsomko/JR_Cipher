@@ -37,7 +37,7 @@ public class FileService {
         }
     }
 
-    public void writeFileEncrypt(String fileName, ArrayList<Character> arrayList) {
+    public void writeFileEncrypt(String fileName) {
 
         Path path = Path.of(fileName);
 
@@ -45,7 +45,7 @@ public class FileService {
         writeFile(file);
     }
 
-    public void writeFileDecrypt(String fileName, ArrayList<Character> arrayList) {
+    public void writeFileDecrypt(String fileName) {
 
         Path path = Path.of(fileName);
 

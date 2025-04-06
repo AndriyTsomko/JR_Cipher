@@ -15,15 +15,15 @@ public class Runner {
         ArrayList<Character> arrayList = fileControl.readFile(path);
 
         cipher.crypt(arrayList, key);
-        fileControl.writeFileEncrypt(path, arrayList);
+        fileControl.writeFileEncrypt(path);
 
 
         if (key >= 0) {
             cipher.decrypt(arrayList, key);
-            fileControl.writeFileDecrypt(path, arrayList);
+            fileControl.writeFileDecrypt(path);
         } else {
             cipher.decrypt(arrayList, key * -1);
-            fileControl.writeFileDecrypt(path, arrayList);
+            fileControl.writeFileDecrypt(path);
         }
     }
 }
