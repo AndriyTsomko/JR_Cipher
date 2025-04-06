@@ -15,4 +15,7 @@ public class Constants {
             'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     ));
 
+    public static final ArrayList<Character> ALPHABET_CHARS = new ArrayList<>(Arrays.asList(
+            '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '
+    ));
 }
