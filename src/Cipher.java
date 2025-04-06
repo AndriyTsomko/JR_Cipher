@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Cipher {
 
@@ -22,6 +23,35 @@ public class Cipher {
                 //використовуємо модуль, щоб коли index + key був більший за size алфавіту не викидувало помилку
                 resultIndex = (index + key) % currentAlphabet.size();
                 //Замінюємо символ в списку на зашифрований
+                char resultChar = currentAlphabet.get(resultIndex);
+                cipherText.set(i, resultChar);
+            }
+
+        }
+    }
+
+    public void decrypt(ArrayList<Character> cipherText, int key) {
+        //Проходимося по кожному символу в лісті
+        //Символи одразу будемо перезаписувати в ліст
+        for (int i = 0; i < cipherText.size(); i++) {
+            //Створюємо тимчасову змінну для зберігання одного символу
+            char temp = cipherText.get(i);
+            //Індекс елемента в алфавіті
+            int index;
+            //Отримуємо індекс елемента в алфавіті, який вже зашифрований
+            int resultIndex = 0;
+            //отримуємо поточний алфавіт
+            ArrayList<Character> currentAlphabet = getAlphabetForChar(temp);
+            //Перевіряємо чи алфавіт не null й, чи містить він наш символ
+            if (currentAlphabet != null && currentAlphabet.contains(temp)) {
+                //Отримуємо індекс елемента
+                index = currentAlphabet.indexOf(temp);
+                //використовуємо модуль, щоб коли index - key був більший за size алфавіту не викидувало помилку
+                if (index - key < 0) {
+                    resultIndex = (currentAlphabet.size() + index - key) % currentAlphabet.size();
+                } else {
+                    resultIndex = (index - key) % currentAlphabet.size();
+                }
                 char resultChar = currentAlphabet.get(resultIndex);
                 cipherText.set(i, resultChar);
             }
