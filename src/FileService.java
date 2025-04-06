@@ -6,11 +6,11 @@ public class FileService {
 
     ArrayList<Character> arrayList = new ArrayList<>();
 
-    //Метод буде зчитувати char з файлу й зберігати їх в ArrayList
+
     public ArrayList<Character> readFile(String fileName) {
-        //Шлях до файлу
+
         File file = new File(Path.of(fileName).toFile().getAbsolutePath());
-        //В читанні файлу будемо використовувати BufferedReader і FileReader
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             int c;
             while ((c = br.read()) != -1) {
@@ -24,11 +24,11 @@ public class FileService {
     }
 
     public void writeFile(File file){
-        //Отримуємо назву нового файлу(Поки працює тільки, коли шифруємо файл)
+
         File createNewFile = new File(String.valueOf(file));
-        //Для запису використовую bufferedWriter і FileWriter, в який передаємо шлях до файлу
+
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(createNewFile))) {
-            //Пробігаємося по лісту за допомогою foreach і записуємо символи
+
             for (Character character : arrayList) {
                 bufferedWriter.write(character.toString());
             }
@@ -38,17 +38,17 @@ public class FileService {
     }
 
     public void writeFileEncrypt(String fileName, ArrayList<Character> arrayList) {
-        //Отримуємо path файла
+
         Path path = Path.of(fileName);
-        //Отримуємо папку в якій знаходився текстовий файл
+
         File file = new File(path.toFile().getAbsolutePath() + "[ENCRYPTED]");
         writeFile(file);
     }
 
     public void writeFileDecrypt(String fileName, ArrayList<Character> arrayList) {
-        //Отримуємо path файла
+
         Path path = Path.of(fileName);
-        //Отримуємо папку в якій знаходився текстовий файл
+
         File file = new File(path.toFile().getAbsolutePath() + "[DECRYPTED]");
         writeFile(file);
     }
