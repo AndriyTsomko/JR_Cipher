@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class Cipher {
+public class CipherService {
 
-    public void crypt(ArrayList<Character> cipherText, int key) {
+    public void encrypt(ArrayList<Character> cipherText, int key) {
         for (int i = 0; i < cipherText.size(); i++) {
 
             char temp = cipherText.get(i);
@@ -57,7 +57,7 @@ public class Cipher {
         }
     }
 
-
+//Сенс методу getAlphabetForChar() - дізнатися в якому алфавіті міститься символ.
     public ArrayList<Character> getAlphabetForChar(char c) {
         if (Constants.ALPHABET_EN_UPPERCASE.contains(c)) {
             return Constants.ALPHABET_EN_UPPERCASE;
