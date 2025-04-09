@@ -1,5 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class FileService {
@@ -23,9 +25,9 @@ public class FileService {
         return arrayList;
     }
 
-    public void writeFile(File file){
+    public void writeFile(String fileName){
 
-        File createNewFile = new File(String.valueOf(file));
+        File createNewFile = new File(String.valueOf(fileName));
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(createNewFile))) {
 
@@ -39,18 +41,21 @@ public class FileService {
 
     public void writeFileEncrypt(String fileName) {
 
-        Path path = Path.of(fileName);
-
-        File file = new File(path.toFile().getAbsolutePath() + "[ENCRYPTED]");
-        writeFile(file);
+        try {
+            Path file = Files.createFile(Paths.get(fileName + "[ENCRYPTED]"));
+            writeFile(String.valueOf(file));
+        } catch (Exception e){
+            System.out.println("Error writing file " + e.getMessage());
+        }
     }
 
     public void writeFileDecrypt(String fileName) {
-
-        Path path = Path.of(fileName);
-
-        File file = new File(path.toFile().getAbsolutePath() + "[DECRYPTED]");
-        writeFile(file);
+        try {
+            Path file = Files.createFile(Paths.get(fileName + "[DECRYPTED]"));
+            writeFile(String.valueOf(file));
+        } catch (Exception e){
+            System.out.println("Error writing file " + e.getMessage());
+        }
     }
 
 }
