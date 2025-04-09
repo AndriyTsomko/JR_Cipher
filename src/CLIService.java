@@ -15,8 +15,8 @@ public class CLIService {
 
     public String enterTheMode(){
         console.nextLine();
-
-        System.out.println("[E]ncrypted or [D]ecrypted text: ");
+        System.out.println("Please enter the mode: ");
+        System.out.println("[E]ncrypt or [D]ecrypt text: ");
         return console.nextLine();
     }
 
