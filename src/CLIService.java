@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CLI {
+public class CLIService {
     Scanner console = new Scanner(System.in);
 
     public String enterThePath(){
