@@ -11,9 +11,7 @@ public class FileService {
 
     public ArrayList<Character> readFile(String fileName) {
 
-        File file = new File(Path.of(fileName).toFile().getAbsolutePath());
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             int c;
             while ((c = br.read()) != -1) {
                 arrayList.add((char) c);
@@ -27,9 +25,7 @@ public class FileService {
 
     public void writeFile(String fileName){
 
-        File createNewFile = new File(String.valueOf(fileName));
-
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(createNewFile))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
 
             for (Character character : arrayList) {
                 bufferedWriter.write(character.toString());
