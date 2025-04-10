@@ -16,13 +16,8 @@ public class FileProcessor {
         }
 
         if (mode.equalsIgnoreCase(decryptedMode)) {
-            if (key >= 0) {
-                cipher.decrypt(arrayList, key);
-                fileService.writeFileDecrypt(path);
-            } else {
-                cipher.decrypt(arrayList, key);
-                fileService.writeFileDecrypt(path);
-            }
+            cipher.decrypt(arrayList, key);
+            fileService.writeFileDecrypt(path);
         }
 
     }
