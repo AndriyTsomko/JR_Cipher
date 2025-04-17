@@ -1,6 +1,14 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CipherService {
+
+    private static final Map<String, ArrayList<Character>> alphabetMap = Map.of(
+            "alphabet_en_lowercase", Constants.ALPHABET_EN_LOWERCASE,
+            "alphabet_en_uppercase", Constants.ALPHABET_EN_UPPERCASE,
+            "alphabet_chars", Constants.ALPHABET_CHARS
+    );
 
     public void encrypt(ArrayList<Character> cipherText, int key) {
         for (int i = 0; i < cipherText.size(); i++) {
@@ -54,14 +62,12 @@ public class CipherService {
     }
 
     public ArrayList<Character> getAlphabetForChar(char c) {
-        if (Constants.ALPHABET_EN_UPPERCASE.contains(c)) {
-            return Constants.ALPHABET_EN_UPPERCASE;
-        } else if (Constants.ALPHABET_EN_LOWERCASE.contains(c)) {
-            return Constants.ALPHABET_EN_LOWERCASE;
-        } else if (Constants.ALPHABET_CHARS.contains(c)) {
-            return Constants.ALPHABET_CHARS;
-        } else {
-            return null;
+
+        for (Map.Entry<String, ArrayList<Character>> entry : alphabetMap.entrySet()) {
+            if (entry.getValue().contains(c)) {
+                return entry.getValue();
+            }
         }
+        return null;
     }
 }
