@@ -40,7 +40,7 @@ public class FileService {
         try {
             Path file = Files.createFile(Paths.get(fileName + "[ENCRYPTED]"));
             writeFile(String.valueOf(file));
-        } catch (Exception e){
+        } catch (IOException e){
             System.out.println("Error writing file " + e.getMessage());
         }
     }
@@ -49,7 +49,7 @@ public class FileService {
         try {
             Path file = Files.createFile(Paths.get(fileName + "[DECRYPTED]"));
             writeFile(String.valueOf(file));
-        } catch (Exception e){
+        } catch (IOException e){
             System.out.println("Error writing file " + e.getMessage());
         }
     }
