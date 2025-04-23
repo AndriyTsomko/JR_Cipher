@@ -7,9 +7,13 @@ public class CaesarApplicationRunner {
     public void run(String[] args) {
         String mode = args[ARG_MODE];
         String path = args[ARG_PATH];
-        int key = Integer.parseInt(args[ARG_KEY]);
-
         FileProcessor fileProcessor = new FileProcessor();
-        fileProcessor.processFile(mode, path, key);
+        boolean isBruteForceMode = mode.equalsIgnoreCase("bruteForce");
+        if (isBruteForceMode) {
+            fileProcessor.processFile(mode, path);
+        } else {
+            int key = Integer.parseInt(args[ARG_KEY]);
+            fileProcessor.processFile(mode, path, key);
+        }
     }
 }
