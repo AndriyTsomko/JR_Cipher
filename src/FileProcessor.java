@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class FileProcessor {
-    String encryptedMode = "ENCRYPT";
-    String decryptedMode = "DECRYPT";
-    String bruteForceMode = "BRUTEFORCE";
+    private static final String encryptedMode = "ENCRYPT";
+    private static final String decryptedMode = "DECRYPT";
+    private static final String bruteForceMode = "BRUTEFORCE";
 
     FileService fileService = new FileService();
     CipherService cipherService = new CipherService();
