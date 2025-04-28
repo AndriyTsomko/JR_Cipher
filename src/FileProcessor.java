@@ -1,22 +1,36 @@
 import java.util.ArrayList;
 
 public class FileProcessor {
+    private static final String encryptedMode = "ENCRYPT";
+    private static final String decryptedMode = "DECRYPT";
+    private static final String bruteForceMode = "BRUTEFORCE";
+
+    FileService fileService = new FileService();
+    CipherService cipherService = new CipherService();
+
 
     public void processFile(String mode, String path, int key) {
-        FileService fileService = new FileService();
-        CipherService cipher = new CipherService();
         ArrayList<Character> arrayList = fileService.readFile(path);
-
-        String encryptedMode = "ENCRYPT";
-        String decryptedMode = "DECRYPT";
-
         if (mode.equalsIgnoreCase(encryptedMode)) {
-            cipher.encrypt(arrayList, key);
+            arrayList.add('A');
+            cipherService.encrypt(arrayList, key);
             fileService.writeFileEncrypt(path);
         }
 
         if (mode.equalsIgnoreCase(decryptedMode)) {
-            cipher.decrypt(arrayList, key);
+            cipherService.decrypt(arrayList, key);
+            fileService.writeFileDecrypt(path);
+        }
+
+
+    }
+
+    public void processFile(String mode, String path) {
+        ArrayList<Character> arrayList = fileService.readFile(path);
+        if (mode.equalsIgnoreCase(bruteForceMode)) {
+            BruteForceDecryptor bruteForceDecryptor = new BruteForceDecryptor();
+            int k = bruteForceDecryptor.findKeyByDecryptionFlag(arrayList);
+            cipherService.decrypt(arrayList, k);
             fileService.writeFileDecrypt(path);
         }
 
