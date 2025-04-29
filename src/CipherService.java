@@ -6,7 +6,9 @@ public class CipherService {
     private static final Map<String, ArrayList<Character>> alphabetMap = Map.of(
             "alphabet_en_lowercase", Constants.ALPHABET_EN_LOWERCASE,
             "alphabet_en_uppercase", Constants.ALPHABET_EN_UPPERCASE,
-            "alphabet_chars", Constants.ALPHABET_CHARS
+            "alphabet_chars", Constants.ALPHABET_CHARS,
+            "alphabet_ua_lowercase", Constants.ALPHABET_UA_LOWERCASE,
+            "alphabet_ua_uppercase", Constants.ALPHABET_EN_UPPERCASE
     );
 
     public void encrypt(ArrayList<Character> cipherText, int key) {
