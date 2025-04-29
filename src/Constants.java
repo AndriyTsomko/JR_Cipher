@@ -30,6 +30,12 @@ public final class Constants {
             'Ш', 'Щ', 'Ь', 'Ю', 'Я'
     ));
 
+    public static final String ENCRYPT_MODE = "ENCRYPT";
+
+    public static final String DECRYPT_MODE = "DECRYPT";
+
+    public static final String BRUTE_FORCE = "BRUTEFORCE";
+
     private Constants() {
 
     }
