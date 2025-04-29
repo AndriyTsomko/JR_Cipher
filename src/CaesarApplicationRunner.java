@@ -1,18 +1,50 @@
 public class CaesarApplicationRunner {
 
-    private static final int ARG_MODE = 0;
-    private static final int ARG_PATH = 1;
-    private static final int ARG_KEY = 2;
+    private String mode;
+    private String path;
+    private String key;
+    private boolean isBruteForceMode;
+
+    FileProcessor fileProcessor = new FileProcessor();
+    InputValidator checker = new InputValidator();
 
     public void run(String[] args) {
-        String mode = args[ARG_MODE];
-        String path = args[ARG_PATH];
-        FileProcessor fileProcessor = new FileProcessor();
-        boolean isBruteForceMode = mode.equalsIgnoreCase("bruteForce");
+        if (args.length == 2 || args.length == 3) {
+            mode = args[0];
+            checker.checkMode(mode);
+            path = args[1];
+            checker.checkPath(path);
+
+            isBruteForceMode = mode.equalsIgnoreCase(Constants.BRUTE_FORCE);
+
+            if (isBruteForceMode) {
+                fileProcessor.processFile(mode, path);
+            } else {
+                key = args[2];
+                checker.checkKey(key);
+                fileProcessor.processFile(mode, path, key);
+            }
+        } else {
+            runCLI();
+        }
+
+    }
+
+    public void runCLI(){
+        CLIService cliService = new CLIService();
+
+        mode = cliService.readMode();
+        checker.checkMode(mode);
+
+        path = cliService.readFilePath();
+        checker.checkPath(path);
+
+        isBruteForceMode = mode.equalsIgnoreCase(Constants.BRUTE_FORCE);
         if (isBruteForceMode) {
             fileProcessor.processFile(mode, path);
         } else {
-            int key = Integer.parseInt(args[ARG_KEY]);
+            key = cliService.readKey();
+            checker.checkKey(key);
             fileProcessor.processFile(mode, path, key);
         }
     }
