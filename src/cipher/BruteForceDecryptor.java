@@ -1,3 +1,7 @@
+package cipher;
+
+import constants.Constants;
+
 import java.util.ArrayList;
 
 public class BruteForceDecryptor {
