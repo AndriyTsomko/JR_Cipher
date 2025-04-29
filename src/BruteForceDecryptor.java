@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class BruteForceDecryptor {
 
-    public int findKeyByDecryptionFlag(ArrayList<Character> arrayList) {
+    public String findKeyByDecryptionFlag(ArrayList<Character> arrayList) {
         char lastChar = arrayList.get(arrayList.size() - 1);
         char expectedLastChar = 'A';
-        int key = 0;
+        String foundKey = null;
 
         ArrayList<Character> alphabet = Constants.ALPHABET_EN_UPPERCASE;
 
@@ -18,12 +18,12 @@ public class BruteForceDecryptor {
                 resultIndex += alphabet.size();
             }
             if (alphabet.get(resultIndex).equals(expectedLastChar)) {
-                key = i;
+                foundKey = String.valueOf(i);
                 break;
             }
         }
         arrayList.remove(arrayList.size() - 1);
 
-        return key;
+        return foundKey;
     }
 }
